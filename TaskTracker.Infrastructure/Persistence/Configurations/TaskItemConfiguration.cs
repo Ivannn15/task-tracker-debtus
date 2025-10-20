@@ -34,7 +34,8 @@ public sealed class TaskItemConfiguration : IEntityTypeConfiguration<TaskItem>
 
         builder.Property(t => t.RowVersion)
             .IsRowVersion()
-            .IsConcurrencyToken();
+            .IsConcurrencyToken()
+            .HasDefaultValueSql("randomblob(8)");
 
         builder.HasMany(t => t.Assignees)
             .WithOne(a => a.Task!)
