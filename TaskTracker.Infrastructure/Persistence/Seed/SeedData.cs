@@ -138,8 +138,8 @@ public static class SeedData
 
         for (var i = 1; i <= 20; i++)
         {
-            var primaryEmployeeId = ((i - 1) % 10) + 1;
-            var secondaryEmployeeId = ((i + 9) % 20) + 1;
+            var primaryEmployeeId = GetPrimaryAssigneeId(i);
+            var secondaryEmployeeId = GetSecondaryAssigneeId(i);
 
             assignments.Add(new TaskAssignment
             {
@@ -194,9 +194,13 @@ public static class SeedData
 
     private static bool IsAssignee(int taskId, int employeeId)
     {
-        var primaryEmployeeId = ((taskId - 1) % 10) + 1;
-        var secondaryEmployeeId = ((taskId + 9) % 20) + 1;
+        var primaryEmployeeId = GetPrimaryAssigneeId(taskId);
+        var secondaryEmployeeId = GetSecondaryAssigneeId(taskId);
 
         return employeeId == primaryEmployeeId || employeeId == secondaryEmployeeId;
     }
+
+    private static int GetPrimaryAssigneeId(int taskId) => ((taskId - 1) % 10) + 1;
+
+    private static int GetSecondaryAssigneeId(int taskId) => GetPrimaryAssigneeId(taskId) + 10;
 }
