@@ -1,5 +1,6 @@
 namespace TaskTracker.Infrastructure.Persistence.Seed;
 
+using System;
 using Microsoft.EntityFrameworkCore;
 using TaskTracker.Domain.Entities;
 using TaskTracker.Domain.Enums;
@@ -125,7 +126,8 @@ public static class SeedData
                 DueDate = baseCreatedAt.AddDays(i + 5),
                 CreatedAt = baseCreatedAt.AddDays(-(21 - i)),
                 Status = statuses[(i - 1) % statuses.Length],
-                Priority = priorities[(i - 1) % priorities.Length]
+                Priority = priorities[(i - 1) % priorities.Length],
+                RowVersion = BitConverter.GetBytes(i)
             });
         }
 
