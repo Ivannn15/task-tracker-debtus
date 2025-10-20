@@ -1,0 +1,22 @@
+@TaskTracker.Api_HostAddress = http://localhost:5103
+
+### Получить список задач
+GET {{TaskTracker.Api_HostAddress}}/api/tasks
+Accept: application/json
+
+### Создать задачу
+POST {{TaskTracker.Api_HostAddress}}/api/tasks
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "Новая задача",
+  "description": "Описание задачи",
+  "projectId": 1,
+  "taskGroupId": 1,
+  "dueDate": "2024-12-31T18:00:00Z",
+  "status": 1,
+  "priority": 3,
+  "assigneeIds": [1, 2],
+  "watcherIds": [3]
+}
